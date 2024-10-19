@@ -15,6 +15,7 @@ import {
   LayoutDashboard,
   Info,
 } from "lucide-react";
+import { SignIn } from "./auth/signin";
 
 const NavComponent = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,8 +28,8 @@ const NavComponent = () => {
   const user = null; // No user data for now
 
   return (
-    <nav className="bg-background text-foreground shadow-md">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="shadow-md bg-background text-foreground">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
@@ -37,7 +38,7 @@ const NavComponent = () => {
                 alt="Ginsta Logo"
                 width={40}
                 height={40}
-                className="mr-2 rounded-full bg-transparent"
+                className="mr-2 bg-transparent rounded-full"
               />
               <span className="ml-2 text-xl font-bold">Ginsta</span>
             </Link>
@@ -71,7 +72,7 @@ const NavComponent = () => {
                   />
                 </button>
                 {profileMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-background border border-border rounded-md shadow-lg py-1 z-10">
+                  <div className="absolute right-0 z-10 w-48 py-1 mt-2 border rounded-md shadow-lg bg-background border-border">
                     <ProfileMenuItem
                       onClick={toggleProfileMenu}
                       icon={<User size={18} />}
@@ -91,15 +92,10 @@ const NavComponent = () => {
                 )}
               </div>
             ) : (
-              <Button
-                size="sm"
-                className="bg-primary text-primary-foreground ml-4"
-              >
-                Sign In
-              </Button>
+              <SignIn></SignIn>
             )}
           </div>
-          <div className="md:hidden flex items-center">
+          <div className="flex items-center md:hidden">
             {isAuthenticated ? (
               <div className="mr-2">
                 <Image
@@ -144,14 +140,7 @@ const NavComponent = () => {
             <MobileNavLink href="/about" icon={<Info size={18} />}>
               About Us
             </MobileNavLink>
-            {!isAuthenticated && (
-              <Button
-                size="sm"
-                className="bg-primary text-primary-foreground w-full mt-2"
-              >
-                Sign In
-              </Button>
-            )}
+            {!isAuthenticated && <SignIn></SignIn>}
           </div>
         </div>
       )}
@@ -162,7 +151,7 @@ const NavComponent = () => {
 const NavLink = ({ href, children, icon }) => (
   <Link
     href={href}
-    className="flex items-center px-3 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+    className="flex items-center px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>
@@ -172,7 +161,7 @@ const NavLink = ({ href, children, icon }) => (
 const MobileNavLink = ({ href, children, icon }) => (
   <Link
     href={href}
-    className="flex items-center px-3 py-2 rounded-md text-base font-medium hover:bg-primary hover:text-primary-foreground transition-colors"
+    className="flex items-center px-3 py-2 text-base font-medium transition-colors rounded-md hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>
@@ -182,7 +171,7 @@ const MobileNavLink = ({ href, children, icon }) => (
 const ProfileMenuItem = ({ onClick, children, icon }) => (
   <button
     onClick={onClick}
-    className="flex items-center w-full px-4 py-2 text-sm text-left hover:bg-primary hover:text-primary-foreground transition-colors"
+    className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>

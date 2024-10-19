@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite" // Or any other DB you prefer
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String          @id @default(uuid()) // Use string ID with UUID
+  email         String?         @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+  name          String
+  snippets      CodeSnippet[]
+  likes         CodeSnippet[]   @relation("Likes") // Many-to-many relation for likes
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@map("users")
+}
+
+model CodeSnippet {
+  id           Int          @id @default(autoincrement())
+  title        String
+  description  String
+  code         String
+  dependencies Dependency[]
+  images       Image[]
+  user         User         @relation(fields: [userId], references: [id])
+  userId       String
+  likedBy      User[]       @relation("Likes")
+  likeCount    Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@map("snippets")
+}
+
+model Image {
+  id        Int         @id @default(autoincrement())
+  url       String
+  altText   String      @default("A cool image")
+  snippet   CodeSnippet @relation(fields: [snippetId], references: [id])
+  snippetId Int
+
+  @@map("images")
+}
+
+model Dependency {
+  id        Int         @id @default(autoincrement())
+  name      String
+  version   String?
+  snippet   CodeSnippet @relation(fields: [snippetId], references: [id])
+  snippetId Int
+
+  @@map("dependencies")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, credentialID])
+}
