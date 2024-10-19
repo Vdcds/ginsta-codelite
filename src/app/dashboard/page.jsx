@@ -1,4 +1,5 @@
+import UserDash from "@/components/UserDash";
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return <div><UserDash></UserDash></div>;
 };
 export default Dashboard;
