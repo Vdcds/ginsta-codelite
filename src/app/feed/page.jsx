@@ -1,5 +1,11 @@
+import GinstaFeed from "@/components/feedcomponent";
+
 const Feed = () => {
-  return <div>div</div>;
+  return (
+    <div>
+      <GinstaFeed></GinstaFeed>
+    </div>
+  );
 };
 
 export default Feed;
