@@ -5,6 +5,7 @@ import { Code, Star, GitBranch, Bot } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { signIn } from "next-auth/react";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <Card className="transition-all duration-300 transform shadow-lg hover:shadow-xl hover:-translate-y-2 rounded-xl">
@@ -236,15 +237,20 @@ export default function Home() {
             ))}
           </motion.div>
           <div className="mt-10 text-center">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90"
+            <Link href="/feed">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Star className="mr-2" size={20} aria-hidden="true" />
-                View More Trending Snippets
-              </Button>
-            </motion.div>
+                <Button
+                  size="lg"
+                  className="bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  <Star className="mr-2" size={20} aria-hidden="true" />
+                  View More Trending Snippets
+                </Button>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </section>
@@ -264,16 +270,15 @@ export default function Home() {
             Join Ginsta today and become part of a thriving community of
             developers sharing, rating, and evolving code snippets together.
           </p>
-          <Link href="/signup" className="inline-block">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="px-8 py-3 text-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg"
-              >
-                Sign Up Now
-              </Button>
-            </motion.div>
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              size="lg"
+              className="px-8 py-3 text-lg bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg"
+              onClick={() => signIn()}
+            >
+              Sign Up Now
+            </Button>
+          </motion.div>
         </motion.div>
       </section>
 

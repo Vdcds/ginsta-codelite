@@ -42,8 +42,8 @@ const UserDash = () => {
           const data = await response.json();
           setUserData({
             likes: data.likes || 0,
-            codeUsedCount: data.codeUsedCount || 0,
-            uploadStreak: data.uploadStreak || 0,
+            codeUsedCount: data.codeUsedCount || 100,
+            uploadStreak: data.uploadStreak || 100,
             name: session.user.name || "Anonymous User",
             profession: data.profession || "Developer",
             img: session.user.image || "/default-avatar.png",
