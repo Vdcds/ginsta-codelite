@@ -10,7 +10,7 @@ function About() {
     {
       name: "Sairaj Jawlikar",
       title: "Leader",
-      img: "", // Leave empty as per your request
+      img: "/s1r4jbhau.jpeg",
       github: "https://github.com/vrushalikudande",
       linkedin: "https://www.linkedin.com/in/vrushalikudande/",
       twitter: "https://twitter.com/vrushalikudande",
@@ -18,7 +18,7 @@ function About() {
     {
       name: "Vendant Chaware",
       title: "Frontend/Backend",
-      img: "", // Leave empty
+      img: "/me.jpeg", // Leave empty
       github: "https://github.com/pratik-mahalle",
       linkedin: "https://www.linkedin.com/in/mahalle-pratik/",
       twitter: "https://x.com/PratikMahalle10",
@@ -26,7 +26,7 @@ function About() {
     {
       name: "Shubham Choure",
       title: "Frontend",
-      img: "", // Leave empty
+      img: "/shubham.jpeg", // Leave empty
       github: "https://github.com/GhanashyamKadam",
       linkedin: "https://www.linkedin.com/in/ghanashyamkadam/",
       twitter: "https://x.com/Ghanashyam3f4",
@@ -34,7 +34,7 @@ function About() {
     {
       name: "Anandi Bhosale",
       title: "Frontend",
-      img: "", // Leave empty
+      img: "/aanandi.jpeg", // Leave empty
       github: "https://github.com/GhanashyamKadam",
       linkedin: "https://www.linkedin.com/in/ghanashyamkadam/",
       twitter: "https://x.com/Ghanashyam3f4",
@@ -44,25 +44,23 @@ function About() {
 
   return (
     <motion.div
-      className="flex flex-col justify-center items-center px-4 py-20 bg-white text-black"
+      className="flex flex-col items-center justify-center px-4 py-20 text-black bg-white"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="mb-12 text-4xl font-bold text-center">
-        About Us
-      </h2>
-      <p className="mb-8 text-lg text-center max-w-2xl">
+      <h2 className="mb-12 text-4xl font-bold text-center">About Us</h2>
+      <p className="max-w-2xl mb-8 text-lg text-center">
         We are a passionate team dedicated to building innovative solutions and
-        collaborating on exciting projects. Meet our core team members who
-        drive our mission forward!
+        collaborating on exciting projects. Meet our core team members who drive
+        our mission forward!
       </p>
 
       <div className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         {teamMembers.map((member, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center p-6 transition-all duration-300 rounded-lg shadow-lg bg-gray-100 hover:shadow-lg"
+            className="flex flex-col items-center p-6 transition-all duration-300 bg-gray-100 rounded-lg shadow-lg hover:shadow-lg"
             whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

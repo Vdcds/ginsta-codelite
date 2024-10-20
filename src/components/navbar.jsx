@@ -33,11 +33,11 @@ const NavComponent = () => {
   return (
     <nav className="shadow-md bg-background text-foreground">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center">
               <Image
-                src="/ginsta-logo.png"
+                src="/logo.jpeg"
                 alt="Ginsta Logo"
                 width={40}
                 height={40}
@@ -63,7 +63,7 @@ const NavComponent = () => {
               <div className="relative ml-4">
                 <button
                   onClick={toggleProfileMenu}
-                  className="flex justify-center items-center w-10 h-10 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                  className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   aria-label="User menu"
                 >
                   <Image
@@ -75,7 +75,7 @@ const NavComponent = () => {
                   />
                 </button>
                 {profileMenuOpen && (
-                  <div className="absolute right-0 z-10 py-1 mt-2 w-48 rounded-md border shadow-lg bg-background border-border">
+                  <div className="absolute right-0 z-10 w-48 py-1 mt-2 border rounded-md shadow-lg bg-background border-border">
                     <ProfileMenuItem
                       onClick={toggleProfileMenu}
                       icon={<User size={18} />}
@@ -116,7 +116,7 @@ const NavComponent = () => {
             )}
             <button
               onClick={toggleMobileMenu}
-              className="inline-flex justify-center items-center p-2 rounded-md text-primary hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-label="Main menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -154,7 +154,7 @@ const NavComponent = () => {
 const NavLink = ({ href, children, icon }) => (
   <Link
     href={href}
-    className="flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-primary hover:text-primary-foreground"
+    className="flex items-center px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>
@@ -164,7 +164,7 @@ const NavLink = ({ href, children, icon }) => (
 const MobileNavLink = ({ href, children, icon }) => (
   <Link
     href={href}
-    className="flex items-center px-3 py-2 text-base font-medium rounded-md transition-colors hover:bg-primary hover:text-primary-foreground"
+    className="flex items-center px-3 py-2 text-base font-medium transition-colors rounded-md hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>
@@ -174,7 +174,7 @@ const MobileNavLink = ({ href, children, icon }) => (
 const ProfileMenuItem = ({ onClick, children, icon }) => (
   <button
     onClick={onClick}
-    className="flex items-center px-4 py-2 w-full text-sm text-left transition-colors hover:bg-primary hover:text-primary-foreground"
+    className="flex items-center w-full px-4 py-2 text-sm text-left transition-colors hover:bg-primary hover:text-primary-foreground"
   >
     {icon}
     <span className="ml-2">{children}</span>

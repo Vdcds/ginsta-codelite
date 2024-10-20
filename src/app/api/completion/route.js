@@ -10,7 +10,7 @@ export async function POST(req) {
 
   const result = await streamText({
     model: google("gemini-1.5-flash"),
-    prompt: `Generate React code according to the given prompt. Just the code, nothing extra and make all buttons and backgrounds of small components bg-black only. ${context.prompt}`,
+    prompt: `Generate React code according to the given prompt. Just the code, nothing extra and make all buttons and backgrounds of small components bg-black  and text-white only. apply this to buttons not any other components and navbars  ${context.prompt}`,
   });
 
   return result.toDataStreamResponse();
